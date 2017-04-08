@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'csv'
+
+CSV.foreach('db/data/userdata.csv') do |data|
+  User.find_or_create_by(
+    name: data[0],
+    email: data[1]
+  )
+  p data[0]
+end
